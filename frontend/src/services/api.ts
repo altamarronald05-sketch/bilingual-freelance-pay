@@ -13,3 +13,27 @@ api.interceptors.request.use((config) => {
   }
   return config;
 });
+
+export const downloadContractPDF = async (projectId: number): Promise<void> => {
+  const token = localStorage.getItem('paylance_token');
+  const response = await fetch(`http://localhost:8000/api/v1/contracts/project/${projectId}/download`, {
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to download contract PDF: ${response.statusText}`);
+  }
+
+  const blob = await response.blob();
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `Contrato_Proyecto_${projectId}.pdf`;
+  document.body.appendChild(a);
+  a.click();
+  window.URL.revokeObjectURL(url);
+  document.body.removeChild(a);
+};

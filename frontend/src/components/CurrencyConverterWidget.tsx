@@ -15,7 +15,7 @@ export const CurrencyConverterWidget: React.FC = () => {
   const convertedValue = (amount / rateFrom) * rateTo;
 
   return (
-    <div className="glass-panel p-6 space-y-4">
+    <div className="glass-panel p-6 space-y-4 border border-slate-800 hover:border-slate-700 transition-all shadow-lg">
       <div className="flex items-center justify-between">
         <h3 className="text-base font-bold text-slate-100 flex items-center gap-2">
           <TrendingUp className="w-5 h-5 text-cyan-400" />
@@ -34,7 +34,7 @@ export const CurrencyConverterWidget: React.FC = () => {
             min="1"
             value={amount}
             onChange={(e) => setAmount(Number(e.target.value))}
-            className="w-full bg-slate-900/90 border border-white/10 rounded-xl px-3 py-2 text-sm text-slate-100 focus:outline-none focus:border-cyan-500"
+            className="w-full bg-slate-900/90 border border-slate-700/80 text-slate-100 text-xs rounded-lg px-3 py-2 focus:ring-1 focus:ring-indigo-500 focus:outline-none"
           />
         </div>
 
@@ -43,7 +43,7 @@ export const CurrencyConverterWidget: React.FC = () => {
           <select
             value={fromCurr}
             onChange={(e) => setFromCurr(e.target.value)}
-            className="w-full bg-slate-900/90 border border-white/10 rounded-xl px-3 py-2 text-sm text-slate-100 focus:outline-none focus:border-cyan-500"
+            className="w-full bg-slate-900/90 border border-slate-700/80 text-slate-100 text-xs rounded-lg px-3 py-2 focus:ring-1 focus:ring-indigo-500 focus:outline-none"
           >
             {Object.keys(rates).map((c) => (
               <option key={c} value={c} className="bg-slate-900">
@@ -58,7 +58,7 @@ export const CurrencyConverterWidget: React.FC = () => {
           <select
             value={toCurr}
             onChange={(e) => setToCurr(e.target.value)}
-            className="w-full bg-slate-900/90 border border-white/10 rounded-xl px-3 py-2 text-sm text-slate-100 focus:outline-none focus:border-cyan-500"
+            className="w-full bg-slate-900/90 border border-slate-700/80 text-slate-100 text-xs rounded-lg px-3 py-2 focus:ring-1 focus:ring-indigo-500 focus:outline-none"
           >
             {Object.keys(rates).map((c) => (
               <option key={c} value={c} className="bg-slate-900">
@@ -69,9 +69,9 @@ export const CurrencyConverterWidget: React.FC = () => {
         </div>
       </div>
 
-      <div className="bg-slate-900/90 p-4 rounded-xl border border-white/10 flex items-center justify-between">
+      <div className="bg-slate-900/80 p-4 rounded-xl border border-slate-700 flex items-center justify-between shadow-inner">
         <span className="text-xs text-slate-400">Resultado Estimado:</span>
-        <span className="text-xl font-extrabold text-cyan-300">
+        <span className="text-lg font-bold text-emerald-400 tracking-tight">
           {toCurr === 'BTC' || toCurr === 'ETH'
             ? `${convertedValue.toFixed(5)} ${toCurr}`
             : `${new Intl.NumberFormat().format(roundTwo(convertedValue))} ${toCurr}`}

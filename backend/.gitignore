@@ -1,0 +1,24 @@
+# Environment & Credentials
+.env
+.env.*
+!.env.example
+
+# Local SQLite Database
+*.db
+*.sqlite
+*.sqlite3
+freelance_pay.db
+
+# Generated PDF Contracts & Private Documents
+generated_contracts/
+contracts/
+
+# Python Cache & Environment
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+logs/
+*.log

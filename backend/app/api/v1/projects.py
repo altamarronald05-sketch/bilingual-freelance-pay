@@ -60,6 +60,10 @@ def get_project(project_id: int, current_user: User = Depends(get_current_user),
     project = db.query(Project).filter(Project.id == project_id).first()
     if not project:
         raise HTTPException(status_code=404, detail="Proyecto no encontrado")
+        
+    if current_user.id not in [project.client_id, project.freelancer_id]:
+        raise HTTPException(status_code=403, detail="No tienes acceso a este proyecto")
+        
     return project
 
 @router.patch("/milestones/{milestone_id}/status", response_model=MilestoneResponse)
@@ -74,6 +78,9 @@ def update_milestone_status(
         raise HTTPException(status_code=404, detail="Hito no encontrado")
         
     project = db.query(Project).filter(Project.id == milestone.project_id).first()
+    
+    if current_user.id not in [project.client_id, project.freelancer_id]:
+        raise HTTPException(status_code=403, detail="No tienes acceso a este proyecto")
     
     # State matrix validation
     new_status = status_update.status

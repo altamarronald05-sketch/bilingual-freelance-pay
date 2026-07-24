@@ -1,13 +1,9 @@
 import os
-from dotenv import load_dotenv
-
-# Load environment variables from .env file
-load_dotenv()
 
 class Settings:
-    PROJECT_NAME: str = os.getenv("PROJECT_NAME", "Bilingual Freelance Milestone Pay")
-    VERSION: str = os.getenv("VERSION", "1.0.0")
-    API_V1_STR: str = os.getenv("API_V1_STR", "/api/v1")
+    PROJECT_NAME: str = "Bilingual Freelance Milestone Pay"
+    VERSION: str = "1.0.0"
+    API_V1_STR: str = "/api/v1"
     
     # Security
     SECRET_KEY: str = os.getenv("SECRET_KEY", "bilingual_freelance_secret_key_2026_super_secure_998877")
