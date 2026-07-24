@@ -12,12 +12,13 @@ def get_engine():
     pg_url = settings.DATABASE_URL
     try:
         engine = create_engine(pg_url, pool_pre_ping=True)
-        # Test connection
+        # Test connection with simple ping query
         with engine.connect() as conn:
-            logger.info("Successfully connected to PostgreSQL database!")
+            print("[DB SUCCESS] Connected cleanly to Supabase PostgreSQL Cloud Database!")
             return engine
     except Exception as e:
-        logger.warning(f"PostgreSQL connection failed ({e}). Falling back to local SQLite database.")
+        safe_err = str(e).encode('ascii', 'ignore').decode('ascii')
+        print(f"[DB NOTICE] PostgreSQL connection fallback: {safe_err}")
         sqlite_engine = create_engine(
             settings.SQLITE_FALLBACK_URL,
             connect_args={"check_same_thread": False}
