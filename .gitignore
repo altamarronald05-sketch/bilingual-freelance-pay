@@ -15,4 +15,5 @@
 # OS / Environment
 .DS_Store
 Thumbs.db
+.env
 .env.local
