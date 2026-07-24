@@ -1,0 +1,67 @@
+{
+  "appName": "PayLance Bilingüe",
+  "tagline": "Gestión de Hitos, Contratos PDF & Pagos Multi-divisa",
+  "nav": {
+    "dashboard": "Tablero Hitos",
+    "transactions": "Historial Pagos",
+    "currencyConverter": "Conversor Divisas",
+    "newProject": "+ Nuevo Proyecto",
+    "logout": "Cerrar Sesión",
+    "login": "Iniciar Sesión",
+    "register": "Registrarse",
+    "role": "Rol"
+  },
+  "auth": {
+    "title": "Bienvenido a PayLance",
+    "subtitle": "Plataforma Transparente para Freelancers e Internacionales",
+    "email": "Correo Electrónico",
+    "password": "Contraseña",
+    "fullName": "Nombre Completo",
+    "roleFreelancer": "Soy Freelancer",
+    "roleClient": "Soy Cliente",
+    "submitLogin": "Ingresar al Panel",
+    "submitRegister": "Crear Cuenta",
+    "switchRegister": "¿No tienes cuenta? Regístrate aquí",
+    "switchLogin": "¿Ya tienes cuenta? Inicia sesión"
+  },
+  "dashboard": {
+    "activeProjects": "Proyectos Activos",
+    "totalEarnings": "Total Fondeado",
+    "milestonesApproved": "Hitos Aprobados",
+    "pendingReview": "En Revisión",
+    "kanbanTitle": "Tablero Kanban de Hitos",
+    "cols": {
+      "pending": "Pendientes",
+      "in_progress": "En Progreso",
+      "under_review": "En Revisión",
+      "approved": "Aprobados / Pagados"
+    },
+    "contractPdf": "Ver Contrato PDF",
+    "payMilestone": "Fonder / Pagar",
+    "signContract": "Firmar Digitalmente"
+  },
+  "currency": {
+    "selectCurrency": "Moneda de Visualización:",
+    "liveRates": "Tasas en Tiempo Real (Base USD)",
+    "convert": "Convertir"
+  },
+  "projectModal": {
+    "createTitle": "Crear Nuevo Proyecto por Hitos",
+    "titleLabel": "Título del Proyecto",
+    "descLabel": "Descripción / Alcance",
+    "freelancerEmail": "Email del Freelancer (Opcional)",
+    "milestonesHeader": "Hitos de Entrega (Milestones)",
+    "addMilestone": "+ Agregar Hito",
+    "saveProject": "Guardar Proyecto",
+    "cancel": "Cancelar"
+  },
+  "checkoutModal": {
+    "title": "Fonder Hito con Pasarela Sandbox",
+    "method": "Método de Pago",
+    "stripe": "Tarjeta de Crédito (Stripe Test)",
+    "crypto": "Criptomonedas (BTC / ETH / USDT)",
+    "amountToPay": "Monto a Liberar:",
+    "confirmPay": "Confirmar Pago Sandbox",
+    "processing": "Procesando Transacción en Blockchain / Stripe..."
+  }
+}

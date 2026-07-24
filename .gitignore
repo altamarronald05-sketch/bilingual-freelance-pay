@@ -1,0 +1,18 @@
+# Python / FastAPI
+**/venv/
+**/__pycache__/
+*.pyc
+*.db
+*.sqlite3
+**/logs/*.log
+**/generated_contracts/*.pdf
+
+# Node / React
+**/node_modules/
+**/dist/
+**/.vite/
+
+# OS / Environment
+.DS_Store
+Thumbs.db
+.env.local

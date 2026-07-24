@@ -1,0 +1,67 @@
+{
+  "appName": "PayLance Bilingual",
+  "tagline": "Milestone Tracking, PDF Contracts & Multi-Currency Payments",
+  "nav": {
+    "dashboard": "Milestone Board",
+    "transactions": "Payment History",
+    "currencyConverter": "Currency Converter",
+    "newProject": "+ New Project",
+    "logout": "Log Out",
+    "login": "Log In",
+    "register": "Register",
+    "role": "Role"
+  },
+  "auth": {
+    "title": "Welcome to PayLance",
+    "subtitle": "Transparent Milestone Platform for Global Freelancers & Clients",
+    "email": "Email Address",
+    "password": "Password",
+    "fullName": "Full Name",
+    "roleFreelancer": "I am a Freelancer",
+    "roleClient": "I am a Client",
+    "submitLogin": "Log In to Dashboard",
+    "submitRegister": "Create Account",
+    "switchRegister": "Don't have an account? Register here",
+    "switchLogin": "Already have an account? Log in"
+  },
+  "dashboard": {
+    "activeProjects": "Active Projects",
+    "totalEarnings": "Total Funded",
+    "milestonesApproved": "Approved Milestones",
+    "pendingReview": "Under Review",
+    "kanbanTitle": "Kanban Milestone Board",
+    "cols": {
+      "pending": "Pending",
+      "in_progress": "In Progress",
+      "under_review": "Under Review",
+      "approved": "Approved / Paid"
+    },
+    "contractPdf": "View PDF Contract",
+    "payMilestone": "Fund / Pay",
+    "signContract": "Sign Digitally"
+  },
+  "currency": {
+    "selectCurrency": "Display Currency:",
+    "liveRates": "Live Rates (Base USD)",
+    "convert": "Convert"
+  },
+  "projectModal": {
+    "createTitle": "Create New Milestone Project",
+    "titleLabel": "Project Title",
+    "descLabel": "Description / Scope",
+    "freelancerEmail": "Freelancer Email (Optional)",
+    "milestonesHeader": "Deliverable Milestones",
+    "addMilestone": "+ Add Milestone",
+    "saveProject": "Save Project",
+    "cancel": "Cancel"
+  },
+  "checkoutModal": {
+    "title": "Fund Milestone via Sandbox Gateway",
+    "method": "Payment Method",
+    "stripe": "Credit Card (Stripe Test)",
+    "crypto": "Cryptocurrency (BTC / ETH / USDT)",
+    "amountToPay": "Amount to Release:",
+    "confirmPay": "Confirm Sandbox Payment",
+    "processing": "Processing Transaction on Blockchain / Stripe..."
+  }
+}
