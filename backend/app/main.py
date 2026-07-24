@@ -38,6 +38,11 @@ app.include_router(payments.router, prefix=settings.API_V1_STR)
 app.include_router(currency.router, prefix=settings.API_V1_STR)
 app.include_router(websocket.router, prefix=settings.API_V1_STR)
 
+# Also expose at /api base path for compatibility
+app.include_router(payments.router, prefix="/api")
+app.include_router(currency.router, prefix="/api")
+
+
 @app.get("/")
 def root():
     return {

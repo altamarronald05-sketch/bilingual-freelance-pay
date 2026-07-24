@@ -14,7 +14,7 @@ FALLBACK_RATES: Dict[str, float] = {
     "USDT": 1.0
 }
 
-async def get_exchange_rates(base: str = "USD") -> Dict[str, Any]:
+async def get_exchange_rates(base: str = "USD", db = None) -> Dict[str, Any]:
     """Fetch live currency exchange rates or use reliable fallback rates."""
     base = base.upper()
     try:
@@ -23,10 +23,25 @@ async def get_exchange_rates(base: str = "USD") -> Dict[str, Any]:
             if response.status_code == 200:
                 data = response.json()
                 rates = data.get("rates", {})
-                # Ensure crypto rates are included
                 rates["BTC"] = FALLBACK_RATES["BTC"]
                 rates["ETH"] = FALLBACK_RATES["ETH"]
                 rates["USDT"] = 1.0
+
+                if db:
+                    from app.models.models import ExchangeRate
+                    from datetime import datetime, timezone
+                    for curr, rate in rates.items():
+                        existing = db.query(ExchangeRate).filter(
+                            ExchangeRate.moneda_origen == base,
+                            ExchangeRate.moneda_destino == curr
+                        ).first()
+                        if existing:
+                            existing.tasa = rate
+                            existing.ultima_actualizacion = datetime.now(timezone.utc)
+                        else:
+                            db.add(ExchangeRate(moneda_origen=base, moneda_destino=curr, tasa=rate))
+                    db.commit()
+
                 return {"base": base, "rates": rates}
     except Exception as e:
         logger.warning(f"Error fetching live rates from API: {e}. Using cached rates.")

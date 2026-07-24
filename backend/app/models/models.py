@@ -111,3 +111,25 @@ class Contract(Base):
 
     # Relationships
     project = relationship("Project", back_populates="contract")
+
+class ExchangeRate(Base):
+    __tablename__ = "exchange_rates"
+
+    id = Column(Integer, primary_key=True, index=True)
+    moneda_origen = Column(String(10), nullable=False)
+    moneda_destino = Column(String(10), nullable=False)
+    tasa = Column(Float, nullable=False)
+    ultima_actualizacion = Column(DateTime, default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc))
+
+class AuditLog(Base):
+    __tablename__ = "audit_logs"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=True)
+    action = Column(String(255), nullable=False)
+    resource_type = Column(String(50), nullable=False)
+    resource_id = Column(Integer, nullable=False)
+    timestamp = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+    
+    # Relationships
+    user = relationship("User")

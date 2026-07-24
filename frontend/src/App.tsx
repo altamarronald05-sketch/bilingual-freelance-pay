@@ -24,9 +24,9 @@ const AppContent: React.FC = () => {
 
   if (!user) {
     return (
-      <div className="min-h-screen">
-        <Navbar activeTab={activeTab} setActiveTab={(t) => setActiveTab(t as any)} onOpenNewProject={() => {}} />
-        <main className="container mx-auto px-4 py-6">
+      <div className="w-full min-h-screen bg-slate-950 flex flex-col">
+        <Navbar activeTab={activeTab} setActiveTab={(t) => setActiveTab(t as any)} />
+        <main className="w-full flex-1 max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <Login />
         </main>
       </div>
@@ -34,14 +34,13 @@ const AppContent: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen pb-12">
+    <div className="w-full min-h-screen bg-slate-950 flex flex-col pb-12">
       <Navbar
         activeTab={activeTab}
         setActiveTab={(t) => setActiveTab(t as any)}
-        onOpenNewProject={() => setShowNewProjectModal(true)}
       />
 
-      <main className="container mx-auto px-4 py-6">
+      <main className="w-full flex-1 max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-6">
         {activeTab === 'dashboard' ? <Dashboard /> : <Transactions />}
       </main>
 
