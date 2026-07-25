@@ -15,7 +15,7 @@ export const CurrencyProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const [selectedCurrency, setSelectedCurrency] = useState<string>('USD');
   const [rates, setRates] = useState<Record<string, number>>({
     USD: 1.0,
-    COP: 4150.0,
+    COP: 3213.20,
     EUR: 0.92,
     BTC: 0.000015,
     ETH: 0.00031,
