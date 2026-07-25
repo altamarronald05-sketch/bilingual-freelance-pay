@@ -1,13 +1,16 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
+from sqlalchemy.orm import Session
+from app.db.database import get_db
 from app.schemas.schemas import CurrencyRatesResponse, CurrencyConvertRequest
 from app.services.currency_service import get_exchange_rates, convert_amount
 
 router = APIRouter(prefix="/currency", tags=["Currency Converter"])
 
 @router.get("/rates", response_model=CurrencyRatesResponse)
-async def fetch_rates(base: str = "USD"):
-    rates_data = await get_exchange_rates(base=base)
+async def fetch_rates(base: str = "USD", db: Session = Depends(get_db)):
+    rates_data = await get_exchange_rates(base=base, db=db)
     return CurrencyRatesResponse(base=rates_data["base"], rates=rates_data["rates"])
+
 
 @router.post("/convert")
 async def convert_currency(req: CurrencyConvertRequest):

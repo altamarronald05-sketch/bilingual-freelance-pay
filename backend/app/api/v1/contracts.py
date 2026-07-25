@@ -3,7 +3,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from fastapi.responses import FileResponse
 from sqlalchemy.orm import Session
 from app.db.database import get_db
-from app.models.models import Project, Contract, User
+from app.models.models import Project, Contract, User, AuditLog
 from app.api.v1.auth import get_current_user
 from app.services.pdf_service import generate_contract_pdf
 
@@ -14,6 +14,9 @@ def download_contract(project_id: int, current_user: User = Depends(get_current_
     project = db.query(Project).filter(Project.id == project_id).first()
     if not project:
         raise HTTPException(status_code=404, detail="Proyecto no encontrado")
+        
+    if current_user.id not in [project.client_id, project.freelancer_id]:
+        raise HTTPException(status_code=403, detail="No tienes acceso a los contratos de este proyecto")
         
     client_name = project.client.full_name if project.client else "Cliente Registrado"
     freelancer_name = project.freelancer.full_name if project.freelancer else "Freelancer Registrado"
@@ -46,7 +49,23 @@ def download_contract(project_id: int, current_user: User = Depends(get_current_
             digital_signature=digital_signature
         )
         db.add(c)
+        audit_log = AuditLog(
+            user_id=current_user.id,
+            action="CONTRACT_GENERATED",
+            resource_type="Contract",
+            resource_id=project.id
+        )
+        db.add(audit_log)
         db.commit()
+
+    audit_download = AuditLog(
+        user_id=current_user.id,
+        action="CONTRACT_DOWNLOADED",
+        resource_type="Contract",
+        resource_id=project.id
+    )
+    db.add(audit_download)
+    db.commit()
 
     return FileResponse(
         path=pdf_path,
@@ -62,6 +81,9 @@ def get_contract_info(project_id: int, current_user: User = Depends(get_current_
         project = db.query(Project).filter(Project.id == project_id).first()
         if not project:
             raise HTTPException(status_code=404, detail="Proyecto no encontrado")
+            
+        if current_user.id not in [project.client_id, project.freelancer_id]:
+            raise HTTPException(status_code=403, detail="No tienes acceso a los contratos de este proyecto")
         client_name = project.client.full_name if project.client else "Cliente Registrado"
         freelancer_name = project.freelancer.full_name if project.freelancer else "Freelancer Registrado"
         pdf_path = os.path.join(os.getcwd(), "generated_contracts", f"contract_project_{project.id}.pdf")

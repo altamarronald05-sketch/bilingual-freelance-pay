@@ -135,9 +135,9 @@ export const Dashboard: React.FC = () => {
       <AnalyticsCharts projects={projects} />
 
       {/* Main Content Area */}
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
-        {/* Left 3 Columns: Project Selector & Kanban / Gantt */}
-        <div className="lg:col-span-3 space-y-6">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        {/* Left 8 Columns: Project Selector & Kanban / Gantt */}
+        <div className="lg:col-span-8 space-y-6">
           {/* Project Selector & View Mode Buttons */}
           <div className="glass-panel p-5 flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center gap-3 overflow-x-auto">
@@ -218,7 +218,7 @@ export const Dashboard: React.FC = () => {
         </div>
 
         {/* Right Sidebar: Real-time Currency Converter & Security Card */}
-        <div className="space-y-6">
+        <div className="lg:col-span-4 space-y-6">
           <CurrencyConverterWidget />
 
           {/* Enterprise Security Status Widget */}
