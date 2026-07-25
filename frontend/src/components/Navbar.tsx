@@ -26,7 +26,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
     document.documentElement.setAttribute('data-theme', nextTheme);
   };
 
-  const copRate = (rates['COP'] || 4150).toLocaleString();
+  const copRate = (rates['COP'] || 3213).toLocaleString();
   const eurRate = (rates['EUR'] || 0.92).toFixed(2);
   const btcRate = (rates['BTC'] ? (1 / rates['BTC']).toLocaleString() : '64,250');
   const ethRate = (rates['ETH'] ? (1 / rates['ETH']).toLocaleString() : '3,450');

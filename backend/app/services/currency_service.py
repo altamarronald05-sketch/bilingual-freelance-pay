@@ -7,8 +7,8 @@ logger = logging.getLogger(__name__)
 # Fallback conversion rates relative to USD in case external API fails or is offline
 FALLBACK_RATES: Dict[str, float] = {
     "USD": 1.0,
-    "COP": 4150.0,
-    "EUR": 0.92,
+    "COP": 3213.20,
+    "EUR": 0.88,
     "BTC": 0.000015,
     "ETH": 0.00031,
     "USDT": 1.0
@@ -18,7 +18,7 @@ async def get_exchange_rates(base: str = "USD", db = None) -> Dict[str, Any]:
     """Fetch live currency exchange rates or use reliable fallback rates."""
     base = base.upper()
     try:
-        async with httpx.AsyncClient(timeout=3.0) as client:
+        async with httpx.AsyncClient(timeout=8.0) as client:
             response = await client.get(f"https://open.er-api.com/v6/latest/{base}")
             if response.status_code == 200:
                 data = response.json()
